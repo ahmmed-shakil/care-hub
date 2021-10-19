@@ -13,7 +13,7 @@ const Features = () => {
         <div className='mx-5'>
             <Container fluid>
                 <Row>
-                    <Row xs={2} md={3} className="g-0 features">
+                    <Row lg={3} sm={12} className="g-0 features">
 
                         {
                             features.slice(0, 3).map(singleFeature => <SingleFeature key={singleFeature.id} feature={singleFeature}></SingleFeature>)

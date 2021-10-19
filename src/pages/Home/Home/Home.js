@@ -3,6 +3,7 @@ import Services from '../../Services/Services/Services';
 import Banner from '../Banner/Banner';
 import Features from '../Features/Features';
 import HeroSection from '../HeroSection/HeroSection';
+import Subscribe from '../Subscribe/Subscribe';
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
             <HeroSection></HeroSection>
             <Features></Features>
             <Services></Services>
+            <Subscribe></Subscribe>
         </div>
     );
 };

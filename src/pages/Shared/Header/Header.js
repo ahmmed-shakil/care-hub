@@ -9,9 +9,9 @@ const Header = () => {
     const { user, logOut } = useAuth();
     return (
         <div className='mb-5'>
-            <Navbar collapseOnSelect expand="lg" bg="white" className='p-2 fw-bold text-uppercase' fixed="top">
+            <Navbar collapseOnSelect expand="lg" bg="white" className='p-2 text-uppercase' fixed="top">
                 <Container>
-                    <Navbar.Brand href="#home" className='fs-3'><span className='text-color'><i className="fas fa-heartbeat"></i>CAREHUB</span></Navbar.Brand>
+                    <Navbar.Brand href="#home" className='fs-3 fw-bolder'><span className='text-color'><i className="fas fa-heartbeat"></i>CAREHUB</span></Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="ms-auto nav-items d-flex align-items-center">
@@ -20,22 +20,24 @@ const Header = () => {
                             <NavLink className='nav-item' to="/contact">Contact</NavLink>
                             <NavLink className='nav-item' to="/about">About</NavLink>
                             {
-                                !user.email ? <Button className='btn-styled mx-3 btn-sm text-uppercase'><NavLink className='text-white fw-bold' to="/login">Login</NavLink></Button>
+                                !user.email ? <Button className='btn-styled mx-3 my-3 btn-sm text-uppercase'><NavLink className='text-white fw-bold' to="/login">Login</NavLink></Button>
                                     :
-                                    <Button onClick={logOut} className='btn-styled mx-3 btn-sm text-uppercase'><NavLink className='text-white fw-bold' to="/home">Log Out</NavLink></Button>
+                                    <Button onClick={logOut} className='btn-styled mx-3 my-3 btn-sm text-uppercase'><NavLink className='text-white fw-bold' to="/home">Log Out</NavLink></Button>
                             }
                         </Nav>
-                        <Navbar.Text>
-                            {
-                                user.email ?
-                                    <span>
-                                        Signed in: {user.displayName}
-                                    </span>
+                        <Nav>
+                            <Navbar.Text>
+                                {
+                                    user.email ?
+                                        <span className='text-capitalize text-dark'>
+                                            Signed in: {user.displayName}
+                                        </span>
 
-                                    :
-                                    ''
-                            }
-                        </Navbar.Text>
+                                        :
+                                        ''
+                                }
+                            </Navbar.Text>
+                        </Nav>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>

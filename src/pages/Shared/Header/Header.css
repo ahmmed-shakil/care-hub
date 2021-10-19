@@ -1,5 +1,5 @@
 .nav-items{
-    font-size: 1.2rem;   
+    font-size: 1rem;   
 }
 .text-color{
     color: #ADC624;
@@ -8,7 +8,7 @@
     text-decoration: none;
     color: black;
     padding: 5px 0px;
-    margin-left: 10px;
+    margin-left: 15px;
     border-bottom: 3px solid transparent;
 }
 

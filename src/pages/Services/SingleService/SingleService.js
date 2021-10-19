@@ -9,7 +9,7 @@ const SingleService = ({ service }) => {
         <div>
             <Col className='h-100 d-grid'>
                 <Card className='border-0 shadow single-service rounded-2 p-2'>
-                    <div className='service-img'>
+                    <div>
                         <Image src={img} style={{ width: '100%', height: '280px', objectFit: 'cover' }} className='rounded-2' />
                     </div>
                     <div className='p-3 text-start'>

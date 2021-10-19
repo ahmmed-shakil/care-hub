@@ -4,14 +4,15 @@ import { NavLink } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth'
 
 const Register = () => {
-    const { handleRegistration, handleEmailChange, handlePasswordChange, error, handleNameChange, handleGoogleSignIn } = useAuth();
+    const { handleRegistration, handleEmailChange, handlePasswordChange, error, handleNameChange, handleGoogleSignIn, removeError, text } = useAuth();
     return (
         <div>
-            <div className='pt-md-5'>{error}</div>
+            <div className='pt-md-5 fw-bold text-danger'>{error}</div>
+            <div className='pt-md-5 fw-bold text-success'>{text}</div>
             <div className='login-page'>
                 <Container>
                     <Row>
-                        <Col lg={6} sm={12} className='login-form p-3 text-start fs-5'>
+                        <Col lg={6} sm={12} className='login-form p-3 pt-0 text-start fs-5'>
                             <h2 className='text-uppercase login-header py-3'>Register</h2>
 
                             <Form onSubmit={handleRegistration}>
@@ -34,9 +35,9 @@ const Register = () => {
                                 </Button>
                             </Form>
                             <div className='pt-3'>
-                                <h4 className='fs-6'>Already Registered? <NavLink className='text-dark' to={'/login'}>Login</NavLink></h4>
+                                <h4 className='fs-6'>Already Registered? <NavLink onClick={removeError} className='text-dark' to={'/login'}>Login</NavLink></h4>
                             </div>
-                            <Button onClick={handleGoogleSignIn}>Google Sign In</Button>
+                            <Button onClick={handleGoogleSignIn}> <i className='fab fa-google'></i> Google Sign In</Button>
                         </Col>
                     </Row>
                 </Container>

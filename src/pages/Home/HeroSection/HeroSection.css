@@ -3,3 +3,15 @@
     grid-template-columns: repeat(2,1fr);
     grid-gap: 20px;
 }
+.hero{
+    display: flex;
+}
+
+@media screen and (max-width:792px){
+    .hero-img{
+        order: 2;
+    }
+    .specializes{
+        grid-template-columns: 1fr;
+    }
+}

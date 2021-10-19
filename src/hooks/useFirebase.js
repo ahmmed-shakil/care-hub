@@ -7,6 +7,7 @@ initializeAuthentication();
 const googleProvider = new GoogleAuthProvider();
 
 const useFirebase = () => {
+    const [text, setText] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
@@ -21,6 +22,8 @@ const useFirebase = () => {
     const handlePasswordChange = e => {
         setPassword(e.target.value)
     }
+
+
     const handleRegistration = (e) => {
         e.preventDefault();
         if (password.length < 6) {
@@ -28,22 +31,37 @@ const useFirebase = () => {
         }
         createUserWithEmailAndPassword(auth, email, password)
             .then(result => {
-                setUser(result.user);
                 setError('')
+                setUserName();
             })
             .catch(err => {
-                setError(err.message)
+                if (err.code === 'auth/email-already-in-use') {
+                    setError('This email is already in use. Please select a new email')
+                }
+
             })
-            .finally(() => setIsLoading(false))
+            .finally(() => {
+                setIsLoading(false);
+                setText('Registration successful. You can now login to your account')
+            }
+            )
     }
-    const handleLogin = () => {
-        return signInWithEmailAndPassword(auth, email, password)
+    const handleLogin = (e) => {
+        e.preventDefault()
+        signInWithEmailAndPassword(auth, email, password)
             .then(result => {
                 setUser(result.user)
                 setError('')
             })
-            .then('login successful')
-            .catch(err => { setError(err) })
+            .catch(err => {
+                if (err.code === 'auth/user-not-found') {
+                    setError('User not found.Please create a new account')
+                }
+                else if (err.code === 'auth/wrong-password') {
+                    setError('Wrong password')
+                }
+
+            })
             .finally(() => setIsLoading(false))
     }
     const handleNameChange = e => {
@@ -68,9 +86,12 @@ const useFirebase = () => {
                 setError('');
             })
             .catch(err => {
-                setError(err)
+                setError('')
             })
-            .finally(() => setIsLoading(false))
+            .finally(() => {
+                setIsLoading(false);
+                setText('Login Successful')
+            })
 
 
     }
@@ -87,6 +108,11 @@ const useFirebase = () => {
         return () => unsubscribe;
     }, [])
 
+    const removeError = () => {
+        setError('')
+        setText('')
+    }
+
     return {
         handleRegistration,
         handleEmailChange,
@@ -100,7 +126,10 @@ const useFirebase = () => {
         setUserName,
         handleGoogleSignIn,
         setIsLoading,
-        setError
+        setError,
+        removeError,
+        setText,
+        text
     }
 }
 
