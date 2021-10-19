@@ -1,0 +1,21 @@
+.banner{
+    background-image: url('https://i.ibb.co/z7MP7MF/header-bg.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.btn-regular{
+    background-color: #0176D5;
+    border: none;
+}
+.btn-regular:hover{
+    background-color: #035292;
+}
+.btn-styled{
+    background-color: #ADC624;
+    border: none;
+}
+.btn-styled:hover{
+   background-color: #7a8f06;
+}

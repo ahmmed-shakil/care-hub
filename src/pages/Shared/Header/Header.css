@@ -1,0 +1,18 @@
+.nav-items{
+    font-size: 1.2rem;   
+}
+.text-color{
+    color: #ADC624;
+}
+.nav-item{
+    text-decoration: none;
+    color: black;
+    padding: 5px 0px;
+    margin-left: 10px;
+    border-bottom: 3px solid transparent;
+}
+
+.nav-item:hover , .nav-item.active {
+    border-bottom: 3px solid #0176D5;
+    color: #0176D5;
+}

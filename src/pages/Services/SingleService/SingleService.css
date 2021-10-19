@@ -1,0 +1,14 @@
+.single-service{
+    transition: 0.5s;
+}
+.single-service:hover {
+    background-color: #073D83;
+    color: white;
+}
+/* .service-img{
+    overflow: hidden;
+}
+.single-service:hover .service-img {
+    transform: scale(1.5);
+    overflow: hidden;
+} */

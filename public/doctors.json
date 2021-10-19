@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "DR. BABATUNDE",
+        "img": "https://i.ibb.co/wRjwTpG/team-5.jpg",
+        "post": "Neuro surgeon"
+    },
+    {
+        "id": 2,
+        "name": "DR. ADDISION LUCY",
+        "img": "https://i.ibb.co/ZfN3G1q/team-1.jpg",
+        "post": "Dental Surgeon"
+    },
+    {
+        "id": 3,
+        "name": "DR. SARAH TYLOR",
+        "img": "https://i.ibb.co/p2WXNYr/team-7.jpg",
+        "post": "Cardiyio Surgeon"
+    },
+    {
+        "id": 4,
+        "name": "DR. JACKSON WILL",
+        "img": "https://i.ibb.co/8gWQ5D8/team-2.jpg",
+        "post": "Pediatrician"
+    },
+    {
+        "id": 5,
+        "name": "DR. SARAH SMITH",
+        "img": "https://i.ibb.co/m61rwWf/team-3.jpg",
+        "post": "Neuro surgeon"
+    },
+    {
+        "id": 6,
+        "name": "DR. THOMAS A.",
+        "img": "https://i.ibb.co/rtdxrBV/team-6.jpg",
+        "post": "Orthopedic"
+    }
+]

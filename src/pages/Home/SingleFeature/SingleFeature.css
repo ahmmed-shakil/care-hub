@@ -1,0 +1,23 @@
+.feature{
+    background-color: #0176D5;
+    color: white;
+}
+
+.feature-header{
+    position: relative;
+    text-align: left;
+    display: inline-block;
+}
+.feature-header::after{
+    content: '';
+    width: 25%;
+    display: inline-block;
+    height: 3px;
+    background-color: #ADC624;
+    position: absolute;
+    left: 0;
+    top: 40px;
+}
+.consult{
+    background-color: #ADC624;
+}

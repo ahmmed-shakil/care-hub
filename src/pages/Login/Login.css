@@ -1,0 +1,21 @@
+.login-page{
+    background-image: url('https://i.ibb.co/brfRC2q/bgn-newsletter-subscribe.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.login-header{
+    position: relative;
+    text-align: left;
+    display: inline-block;
+}
+.login-header::after{
+    content: '';
+    width: 100%;
+    display: inline-block;
+    height: 3px;
+    background-color: #ADC624;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
