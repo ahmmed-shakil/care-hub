@@ -5,7 +5,7 @@ import useAuth from '../../hooks/useAuth';
 import './Login.css'
 
 const Login = () => {
-    const { handleLogin, handleEmailChange, handlePasswordChange, error, handleGoogleSignIn, removeError, setError, setIsLoading } = useAuth();
+    const { handleLogin, handleEmailChange, handlePasswordChange, error, handleGoogleSignIn, removeError, setError, setIsLoading, setUserName } = useAuth();
     const location = useLocation();
     const history = useHistory();
     const redirect_uri = location.state?.from || '/home'
@@ -21,6 +21,7 @@ const Login = () => {
         e.preventDefault();
         handleLogin()
             .then(result => {
+                setUserName();
                 history.push(redirect_uri)
             })
             .catch(err => {

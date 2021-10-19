@@ -4,7 +4,7 @@ import { NavLink, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth'
 
 const Register = () => {
-    const { handleRegistration, handleEmailChange, handlePasswordChange, error, handleNameChange, handleGoogleSignIn, removeError, text, setError, setIsLoading } = useAuth();
+    const { handleRegistration, handleEmailChange, handlePasswordChange, error, handleNameChange, handleGoogleSignIn, removeError, setError, setIsLoading, setUserName } = useAuth();
     const location = useLocation();
     const history = useHistory();
     const redirect_uri = location.state?.from || '/home'
@@ -14,11 +14,14 @@ const Register = () => {
         handleRegistration()
             .then(result => {
                 setError('')
+                setUserName()
                 history.push(redirect_uri)
             })
             .catch(err => {
                 if (err.code === 'auth/email-already-in-use') {
                     setError('This email is already in use. Please select a new email')
+                }
+                else {
                 }
 
             })
@@ -30,7 +33,6 @@ const Register = () => {
     return (
         <div>
             <div className='pt-md-5 fw-bold text-danger'>{error}</div>
-            <div className='pt-md-5 fw-bold text-success'>{text}</div>
             <div className='login-page'>
                 <Container>
                     <Row>

@@ -3,7 +3,6 @@ import { Card, Col, Image } from 'react-bootstrap';
 
 const SingleMember = ({ doctor }) => {
     const { name, post, img } = doctor;
-    console.log(name)
     return (
         <Col className='d-grid h-100 text-start py-3'>
             <Card className='p-2 rounded fw-bold single-service'>
