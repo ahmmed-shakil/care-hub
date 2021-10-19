@@ -20,9 +20,12 @@ const Header = () => {
                             <NavLink className='nav-item' to="/contact">Contact</NavLink>
                             <NavLink className='nav-item' to="/about">About</NavLink>
                             {
-                                !user.email ? <Button className='btn-styled mx-3 my-3 btn-sm text-uppercase'><NavLink className='text-white fw-bold' to="/login">Login</NavLink></Button>
+                                !user.email ? <span>
+                                    <Button className='btn-styled ms-3 my-3 btn-sm text-uppercase'><NavLink className='text-dark text-decoration-none fw-bold' to="/register">Sign Up</NavLink></Button>
+                                    <Button className='btn-styled mx-3 my-3 btn-sm text-uppercase'><NavLink className='text-dark text-decoration-none fw-bold' to="/login">Log In</NavLink></Button>
+                                </span>
                                     :
-                                    <Button onClick={logOut} className='btn-styled mx-3 my-3 btn-sm text-uppercase'><NavLink className='text-white fw-bold' to="/home">Log Out</NavLink></Button>
+                                    <Button onClick={logOut} className='btn-styled mx-2 my-3 btn-sm text-uppercase'><NavLink className='text-dark text-decoration-none fw-bold' to="/home">Log Out</NavLink></Button>
                             }
                         </Nav>
                         <Nav>

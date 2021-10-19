@@ -24,45 +24,17 @@ const useFirebase = () => {
     }
 
 
-    const handleRegistration = (e) => {
-        e.preventDefault();
+    const handleRegistration = () => {
         if (password.length < 6) {
             setError('Password must be at least 6 characters long')
+            return
         }
-        createUserWithEmailAndPassword(auth, email, password)
-            .then(result => {
-                setError('')
-                setUserName();
-            })
-            .catch(err => {
-                if (err.code === 'auth/email-already-in-use') {
-                    setError('This email is already in use. Please select a new email')
-                }
-
-            })
-            .finally(() => {
-                setIsLoading(false);
-                setText('Registration successful. You can now login to your account')
-            }
-            )
+        return createUserWithEmailAndPassword(auth, email, password)
+            .then(() => setUserName())
     }
-    const handleLogin = (e) => {
-        e.preventDefault()
-        signInWithEmailAndPassword(auth, email, password)
-            .then(result => {
-                setUser(result.user)
-                setError('')
-            })
-            .catch(err => {
-                if (err.code === 'auth/user-not-found') {
-                    setError('User not found.Please create a new account')
-                }
-                else if (err.code === 'auth/wrong-password') {
-                    setError('Wrong password')
-                }
-
-            })
-            .finally(() => setIsLoading(false))
+    const handleLogin = () => {
+        return signInWithEmailAndPassword(auth, email, password)
+            .then(() => setUserName())
     }
     const handleNameChange = e => {
         setName(e.target.value);

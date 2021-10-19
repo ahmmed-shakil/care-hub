@@ -5,7 +5,7 @@ import useAuth from '../../hooks/useAuth';
 import './Login.css'
 
 const Login = () => {
-    const { handleLogin, handleEmailChange, handlePasswordChange, error, handleGoogleSignIn, removeError } = useAuth();
+    const { handleLogin, handleEmailChange, handlePasswordChange, error, handleGoogleSignIn, removeError, setError, setIsLoading, setUserName } = useAuth();
     const location = useLocation();
     const history = useHistory();
     const redirect_uri = location.state?.from || '/home'
@@ -17,6 +17,24 @@ const Login = () => {
             })
     }
 
+    const userLogin = e => {
+        e.preventDefault();
+        handleLogin()
+            .then(result => {
+                history.push(redirect_uri)
+            })
+            .catch(err => {
+                if (err.code === 'auth/user-not-found') {
+                    setError('User not found.Please create a new account')
+                }
+                else if (err.code === 'auth/wrong-password') {
+                    setError('Wrong password')
+                }
+
+            })
+            .finally(() => setIsLoading(false))
+    }
+
     return (
         <div>
             <div className='login-page'>
@@ -25,7 +43,7 @@ const Login = () => {
                     <Row>
                         <Col lg={6} sm={12} className='login-form p-3 text-start fs-5'>
                             <h2 className='text-uppercase login-header py-3'>Log In</h2>
-                            <Form onSubmit={handleLogin}>
+                            <Form onSubmit={userLogin}>
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Label>Email address</Form.Label>
                                     <Form.Control type="email" onBlur={handleEmailChange} placeholder="Enter email" />
@@ -36,7 +54,7 @@ const Login = () => {
                                     <Form.Control type="password" onBlur={handlePasswordChange} placeholder="Password" />
                                 </Form.Group>
                                 <Button className='w-100' variant="dark fw-bold" type="submit">
-                                    Submit
+                                    Login
                                 </Button>
                             </Form>
                             <div className='pt-3'>

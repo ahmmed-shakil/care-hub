@@ -1,10 +1,32 @@
 import React from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth'
 
 const Register = () => {
-    const { handleRegistration, handleEmailChange, handlePasswordChange, error, handleNameChange, handleGoogleSignIn, removeError, text } = useAuth();
+    const { handleRegistration, handleEmailChange, handlePasswordChange, error, handleNameChange, handleGoogleSignIn, removeError, text, setError, setIsLoading, setUserName } = useAuth();
+    const location = useLocation();
+    const history = useHistory();
+    const redirect_uri = location.state?.from || '/home'
+
+    const userRegistration = e => {
+        e.preventDefault(e);
+        handleRegistration()
+            .then(result => {
+                setError('')
+                history.push(redirect_uri)
+            })
+            .catch(err => {
+                if (err.code === 'auth/email-already-in-use') {
+                    setError('This email is already in use. Please select a new email')
+                }
+
+            })
+            .finally(() => {
+                setIsLoading(false);
+            }
+            )
+    }
     return (
         <div>
             <div className='pt-md-5 fw-bold text-danger'>{error}</div>
@@ -15,7 +37,7 @@ const Register = () => {
                         <Col lg={6} sm={12} className='login-form p-3 pt-0 text-start fs-5'>
                             <h2 className='text-uppercase login-header py-3'>Register</h2>
 
-                            <Form onSubmit={handleRegistration}>
+                            <Form onSubmit={userRegistration}>
 
                                 <Form.Group className="mb-3" controlId="formBasicName">
                                     <Form.Label>Your Name</Form.Label>
@@ -31,7 +53,7 @@ const Register = () => {
                                     <Form.Control type="password" onBlur={handlePasswordChange} placeholder="Password" />
                                 </Form.Group>
                                 <Button className='w-100' variant="dark fw-bold" type="submit">
-                                    Submit
+                                    Register
                                 </Button>
                             </Form>
                             <div className='pt-3'>
