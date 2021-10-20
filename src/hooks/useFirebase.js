@@ -13,6 +13,8 @@ const useFirebase = () => {
     const [name, setName] = useState('');
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true)
+    const [logInError, setLogInError] = useState('');
+    const [registrationError, setRegistrationError] = useState('');
     const [error, setError] = useState('');
     const auth = getAuth();
 
@@ -77,6 +79,8 @@ const useFirebase = () => {
     const removeError = () => {
         setError('')
         setText('')
+        setLogInError('');
+        setRegistrationError('');
     }
 
     return {
@@ -95,7 +99,11 @@ const useFirebase = () => {
         setError,
         removeError,
         setText,
-        text
+        text,
+        logInError,
+        setLogInError,
+        registrationError,
+        setRegistrationError
     }
 }
 

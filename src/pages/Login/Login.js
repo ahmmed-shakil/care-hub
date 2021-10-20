@@ -5,7 +5,7 @@ import useAuth from '../../hooks/useAuth';
 import './Login.css'
 
 const Login = () => {
-    const { handleLogin, handleEmailChange, handlePasswordChange, error, handleGoogleSignIn, removeError, setError, setIsLoading, setUserName } = useAuth();
+    const { handleLogin, handleEmailChange, handlePasswordChange, logInError, handleGoogleSignIn, removeError, setLogInError, setIsLoading, setUserName } = useAuth();
     const location = useLocation();
     const history = useHistory();
     const redirect_uri = location.state?.from || '/home'
@@ -22,16 +22,22 @@ const Login = () => {
         handleLogin()
             .then(result => {
                 setUserName();
+                setLogInError('')
                 history.push(redirect_uri)
+                if (redirect_uri) {
+                    setLogInError('');
+                }
             })
             .catch(err => {
                 if (err.code === 'auth/user-not-found') {
-                    setError('User not found.Please create a new account')
+                    setLogInError('User not found.Please create a new account')
                 }
                 else if (err.code === 'auth/wrong-password') {
-                    setError('Wrong password')
+                    setLogInError('Wrong password')
                 }
+                else {
 
+                }
             })
             .finally(() => setIsLoading(false))
     }
@@ -39,8 +45,7 @@ const Login = () => {
     return (
         <div>
             <div className='login-page'>
-                <Container>
-                    <div className='text-danger fw-bold pt-5'>{error}</div>
+                <Container className='pt-5'>
                     <Row>
                         <Col lg={6} sm={12} className='login-form p-3 pt-0 text-start fs-5'>
                             <h2 className='text-uppercase login-header pb-3'>Log In</h2>
@@ -58,7 +63,8 @@ const Login = () => {
                                     Login
                                 </Button>
                             </Form>
-                            <div className='pt-3'>
+                            <p className='text-danger pt-2 fs-6 fw-bold'>{logInError}</p>
+                            <div>
                                 <h4 className='fs-6'>Don't have an account? <NavLink className='text-dark' to={'/register'} onClick={removeError}>Create a new one</NavLink></h4>
                             </div>
                             <Button onClick={signInUsingGoogle}><i className='fab fa-google'></i> Google Sign In</Button>

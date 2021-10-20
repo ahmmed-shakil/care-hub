@@ -4,29 +4,38 @@ import { NavLink, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth'
 
 const Register = () => {
-    const { handleRegistration, handleEmailChange, handlePasswordChange, error, handleNameChange, handleGoogleSignIn, removeError, setError, setIsLoading, setUserName } = useAuth();
+    const { handleRegistration, handleEmailChange, handlePasswordChange, registrationError, handleNameChange, handleGoogleSignIn, removeError, setRegistrationError, setIsLoading, setUserName } = useAuth();
     const location = useLocation();
     const history = useHistory();
     const redirect_uri = location.state?.from || '/home'
 
+    const signInUsingGoogle = () => {
+        handleGoogleSignIn()
+            .then(result => {
+                history.push(redirect_uri);
+            })
+    }
     const userRegistration = e => {
         e.preventDefault(e);
         handleRegistration()
             .then(result => {
-                setError('')
+                setRegistrationError('')
                 setUserName()
                 history.push(redirect_uri);
+                if (redirect_uri) {
+                    setRegistrationError('');
+                }
                 window.location.reload();
             })
             .catch(err => {
                 if (err.code === 'auth/email-already-in-use') {
-                    setError('This email is already in use. Please select a new email')
+                    setRegistrationError('This email is already in use. Please select a new email')
                 }
                 else if (err.code === 'auth/weak-password') {
-                    setError('Password must be at least 6 characters long')
+                    setRegistrationError('Password must be at least 6 characters long')
                 }
                 else {
-                    setError(err.code)
+                    setRegistrationError(err.code)
                 }
 
             })
@@ -37,8 +46,7 @@ const Register = () => {
     }
     return (
         <div>
-            <div className='pt-md-5 fw-bold text-danger'>{error}</div>
-            <div className='login-page'>
+            <div className='login-page pt-md-5'>
                 <Container>
                     <Row>
                         <Col lg={6} sm={12} className='login-form p-3 pt-0 text-start fs-5'>
@@ -63,10 +71,11 @@ const Register = () => {
                                     Register
                                 </Button>
                             </Form>
+                            <p className='text-danger pt-2 fs-6 fw-bold'>{registrationError}</p>
                             <div className='pt-3'>
                                 <h4 className='fs-6'>Already Registered? <NavLink onClick={removeError} className='text-dark' to={'/login'}>Login</NavLink></h4>
                             </div>
-                            <Button onClick={handleGoogleSignIn}> <i className='fab fa-google'></i> Google Sign In</Button>
+                            <Button onClick={signInUsingGoogle}> <i className='fab fa-google'></i> Google Sign In</Button>
                         </Col>
                     </Row>
                 </Container>
