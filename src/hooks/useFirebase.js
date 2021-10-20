@@ -25,9 +25,6 @@ const useFirebase = () => {
 
 
     const handleRegistration = () => {
-        if (password.length < 6) {
-            setError('Password must be at least 6 characters long')
-        }
         return createUserWithEmailAndPassword(auth, email, password)
     }
     const handleLogin = () => {

@@ -5,7 +5,7 @@ import './HeroSection.css'
 const HeroSection = () => {
     return (
         <div>
-            <Row className='hero align-items-center pt-5 m-3'>
+            <Row className='hero align-items-center pt-5 pt-md-0 m-3'>
                 <Col lg={6} sm={12} className='hero-img'>
                     <Image src='https://i.ibb.co/Qj1CpZp/image-1.png' fluid />
                 </Col>

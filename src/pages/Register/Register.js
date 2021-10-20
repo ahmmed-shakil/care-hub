@@ -15,13 +15,18 @@ const Register = () => {
             .then(result => {
                 setError('')
                 setUserName()
-                history.push(redirect_uri)
+                history.push(redirect_uri);
+                window.location.reload();
             })
             .catch(err => {
                 if (err.code === 'auth/email-already-in-use') {
                     setError('This email is already in use. Please select a new email')
                 }
+                else if (err.code === 'auth/weak-password') {
+                    setError('Password must be at least 6 characters long')
+                }
                 else {
+                    setError(err.code)
                 }
 
             })

@@ -32,8 +32,8 @@ const Header = () => {
                             <Navbar.Text>
                                 {
                                     user.email ?
-                                        <span className='text-capitalize text-dark'>
-                                            Signed in: {user.displayName}
+                                        <span className='text-capitalize text-dark fw-bold'>
+                                            {user.displayName}
                                         </span>
 
                                         :

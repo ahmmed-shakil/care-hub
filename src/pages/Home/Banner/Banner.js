@@ -14,7 +14,7 @@ const Banner = () => {
     return (
         <div className='banner'>
             <Container>
-                <Row className='d-flex align-items-center'>
+                <Row className='d-flex align-items-center pt-5'>
                     <Col lg={6} sm={12} className='text-md-start'>
                         <h1 className='fw-bold'>We Provide Total Health Care Solution</h1>
                         <p className='fs-5 my-5'>We  believe in highest professional competence with a human touch and will deliver excellent medical treatment to everyone. We will follow rational and ethical medical practices implicitly. We are committed to medico-social services.</p>

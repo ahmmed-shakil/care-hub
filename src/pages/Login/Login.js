@@ -42,8 +42,8 @@ const Login = () => {
                 <Container>
                     <div className='text-danger fw-bold pt-5'>{error}</div>
                     <Row>
-                        <Col lg={6} sm={12} className='login-form p-3 text-start fs-5'>
-                            <h2 className='text-uppercase login-header py-3'>Log In</h2>
+                        <Col lg={6} sm={12} className='login-form p-3 pt-0 text-start fs-5'>
+                            <h2 className='text-uppercase login-header pb-3'>Log In</h2>
                             <Form onSubmit={userLogin}>
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Label>Email address</Form.Label>
